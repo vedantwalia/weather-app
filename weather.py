@@ -2,18 +2,38 @@ import requests
 from config import API_KEY, BASE_URL
 
 def get_weather(city):
-    """Fetching the weather data for a given city."""
-    params = {
-        'q': city,
-        'appid': API_KEY,
-        'units': 'metric' # Use 'imperial' for Fahrenheit
-    }
-    response = requests.get(BASE_URL, params=params)
-    
-    if response.status_code == 200: # error handling
-        return response.json()
-    else:
-        return None
+    base_url = "https://api.openweathermap.org/data/2.5/"
+    params = {"q": city, "appid": API_KEY, "units": "metric"}
+
+    # Get current weather
+    current = requests.get(base_url + "weather", params=params).json()
+    if current.get("cod") != 200:
+        return current
+
+    # Get 5-day forecast
+    forecast_resp = requests.get(base_url + "forecast", params=params).json()
+    forecast = forecast_resp.get("list", [])
+
+    # Combine both
+    current["forecast"] = forecast
+    return current
+
+def get_coordinates(city):
+    """Get coordinates for AQI"""
+    geo_url = "http://api.openweathermap.org/geo/1.0/direct"
+    params = {"q": city, "limit": 1, "appid": API_KEY}
+    response = requests.get(geo_url, params=params)
+    data = response.json()
+    if data:
+        return data[0]["lat"], data[0]["lon"]
+    return None, None
+
+def get_aqi(lat, lon):
+    """Fetch Air Quality Index data"""
+    url = "http://api.openweathermap.org/data/2.5/air_pollution"
+    params = {"lat": lat, "lon": lon, "appid": API_KEY}
+    response = requests.get(url, params=params)
+    return response.json()
     
 if __name__ == "__main__":
     city = input("Enter city name: ")
