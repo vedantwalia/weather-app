@@ -46,5 +46,3 @@ Check out the live app here: [https://vedantwalia-weather-app.streamlit.app](htt
 This project is licensed under the MIT License.
 
 ---
-
-*Made with ❤️ using Streamlit.*
