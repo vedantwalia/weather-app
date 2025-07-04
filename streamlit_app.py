@@ -1,6 +1,7 @@
 import streamlit as st
 from weather import get_weather, get_coordinates, get_aqi
 import plotly.graph_objects as go
+import pandas as pd
 
 st.set_page_config(page_title="Weather App", page_icon="🌤")
 st.title("🌤 Weather Forecast App")
@@ -18,6 +19,7 @@ if city:
         st.metric("💧 Humidity", f"{data['main']['humidity']}%")
         st.metric("🌬 Wind Speed", f"{data['wind']['speed']} m/s")
         st.write("**🌈 Conditions:**", data['weather'][0]['description'].title())
+
     # AQI Section
         lat, lon = get_coordinates(city)
         if lat is not None and lon is not None:
@@ -40,11 +42,31 @@ if city:
         # Display 5-day temperature forecast as a line graph
         forecast = data.get('forecast', [])
         if forecast:
-            dates = [item['dt_txt'] for item in forecast]
-            temps = [item['main']['temp'] for item in forecast]
+            # Convert to DataFrame for easier grouping
+            df = pd.DataFrame(forecast)
+            df['date'] = pd.to_datetime(df['dt_txt']).dt.date
+            df['temp'] = df['main'].apply(lambda x: x['temp'])
+            daily_avg = df.groupby('date')['temp'].mean().reset_index()
+
             fig = go.Figure()
-            fig.add_trace(go.Scatter(x=dates, y=temps, mode='lines+markers', name='🌡 Temperature (°C)', line=dict(color='orange')))
-            fig.update_layout(title="📅 5-Day Temperature Forecast", xaxis_title="📆 Date/Time", yaxis_title="🌡 Temperature (°C)", xaxis_tickangle=-45)
+            fig.add_trace(go.Scatter(
+                x=daily_avg['date'],
+                y=daily_avg['temp'],
+                mode='lines+markers',
+                name='🌡 Avg Temp (°C)',
+                line=dict(color='orange'),
+                marker=dict(size=8)
+            ))
+            fig.update_layout(
+                title="📅 5-Day Average Temperature Forecast",
+                xaxis_title="📆 Date",
+                yaxis_title="🌡 Temperature (°C)",
+                xaxis_tickangle=-45,
+                xaxis=dict(showgrid=True),
+                yaxis=dict(showgrid=True),
+                plot_bgcolor='rgba(0,0,0,0)',
+                hovermode='x unified'
+            )
             st.plotly_chart(fig, use_container_width=True)
         else:
             st.info("ℹ️ No 5-day forecast data available for this city.")
