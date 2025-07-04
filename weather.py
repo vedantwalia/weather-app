@@ -2,7 +2,7 @@ import requests
 from config import API_KEY, BASE_URL
 
 def get_weather(city):
-    base_url = "https://api.openweathermap.org/data/2.5/"
+    base_url = "https://api.openweathermap.org/data/2.5/" 
     params = {"q": city, "appid": API_KEY, "units": "metric"}
 
     # Get current weather
