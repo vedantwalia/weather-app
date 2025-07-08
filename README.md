@@ -3,7 +3,7 @@
 A simple and interactive weather application built with [Streamlit](https://streamlit.io/). Instantly check current weather conditions for any city worldwide.
 
 <p align="center" style="background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%); padding: 24px; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
-  <img src="https://private-user-images.githubusercontent.com/45071387/463740783-aa1a692e-08d6-4334-9f0c-5a8f61c063ba.png" alt="Weather App Screenshot" width="600" style="border-radius: 12px; background: #f3f4f6; padding: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.10);" />
+  <img src="https://private-user-images.githubusercontent.com/45071387/463740783-aa1a692e-08d6-4334-9f0c-5a8f61c063ba.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTE5ODY3MjAsIm5iZiI6MTc1MTk4NjQyMCwicGF0aCI6Ii80NTA3MTM4Ny80NjM3NDA3ODMtYWExYTY5MmUtMDhkNi00MzM0LTlmMGMtNWE4ZjYxYzA2M2JhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA3MDglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNzA4VDE0NTM0MFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTQxYTBmM2FhY2JhZTI0NTE4OGE3YzcxMGJjNzI1NWVmMzZmOTk3MjE4MGY5MjBhOGEzM2ZhZGMyN2NlNzRlZjUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.QaHIiydX7XjLvktKoo5vhxO2pUGwH1DD7jXZdpZcp30" alt="Weather App Screenshot" width="600" style="border-radius: 12px; background: #f3f4f6; padding: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.10);" />
 </p>
 
 ---
